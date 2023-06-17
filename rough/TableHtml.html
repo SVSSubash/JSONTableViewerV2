@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <style>
+            /* css common */
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed, 
+            figure, figcaption, footer, header, hgroup, 
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+                margin: 0;
+                vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article, aside, details, figcaption, figure, 
+            footer, header, hgroup, menu, nav, section {
+                display: block;
+            }
+            ol, ul {
+                list-style: none;
+            }
+            blockquote, q {
+                quotes: none;
+            }
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            /* CSS common 2 */
+            * {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            table {
+                display: grid;
+                grid-template-columns: auto;
+                justify-content: stretch;
+            }
+            thead, tbody, tr{
+                display:contents;
+            }
+            th, td
+            {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                border: solid;
+                border-right-width: 0px;
+                border-left-width: 0px;
+                border-top-width: 1px;
+                margin-top:-1px;
+                border-bottom-width: 1px;
+                padding:.5rem;
+            }
+            td > span,th > span{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                inline-size: auto;
+                border-radius: 10px;
+                color: black;
+                font-weight: bold;
+                padding: 0 1em 0 1em;
+            }
+            [contenteditable]:focus
+            {
+                outline:0px solid rgb(0, 0, 0);
+                background-color: rgb(148, 231, 236);
+                color:black;
+                font-weight: bold;
+            }
+            table{
+                position: relative;
+            }
+            table>thead>tr>th{
+                position: -webkit-sticky;
+                position: sticky;
+                top:-1px;
+            }
+            /* CSS common 3 */
+            body {
+                box-sizing: border-box;
+                block-size: 100vh;
+                display: flex;
+                flex-direction: column;
+                background-image: linear-gradient(black, rgb(68, 68, 68));
+            }
+            #nav {
+                block-size: 5%;
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: start;
+            }
+            #nav span{
+                margin-left:2rem;
+            }
+            #intContent
+            {
+                block-size: 8%;
+            }
+            #content {
+                block-size: 100%;
+                overflow: scroll;
+                margin:1rem;
+            }
+            #footer{
+                block-size: 3%;
+            }
+            /* Page Theming */
+            #nav {
+                background-color: #007bff;
+                color: white;
+            }
+            #intContent{
+                background-color: rgb(218, 218, 218);
+            }
+            #footer{
+                background-color: rgb(161, 82, 235);
+            }
+            body{
+                background-color: white;
+            }
+            /*::-webkit-scrollbar {
+            width: .5rem;
+            background-color: #007bff;
+            }*/
+            /* CSS TABLE THEME */
+            table{
+            background-color:#d5e6fa;
+            color:black;
+            }
+
+            th{
+            background-color:#007bff;
+            }
+
+            th,td{
+            border-color:#c5ddf8;
+            }
+
+            table tbody tr:nth-of-type(odd) td{
+            background-color: #91bfef;
+            }
+
+	            body{
+                background-color: white;
+            }
+            /* Sizing Theme */
+            .small{
+                font-size: .90rem;
+            }
+            .medium{
+                font-size: .95rem;
+            }
+            .large{
+                font-size: 1rem;
+            }
+            /* Font Style Theme*/
+            *{
+             font-style: normal !important;   
+            }
+        </style>
+        <script>
+            invoke = (event) => {
+                let nameOfFunction = this[event.target.name];
+                let arg1 = event.target.getAttribute('data-arg1');
+                // We can add more arguments as needed...
+                window[nameOfFunction](arg1)
+                // Hope the function is in the window.
+                // Else the respective object need to be used
+            }
+
+            /*function hideColumns(object){
+                alert(object["id"]);
+                console.log(object);
+                let columns = document.querySelectorAll('[data-dataColumn]');
+                for(var i = 0; i < columns.length;i++)
+                {
+                    alert(typeof(columns[i]));
+                }
+                columns[0].hidden = true;
+                columns[0].style.width = "100px";
+                columns[0].style.display = "none";
+                for(var prop in columns[0])
+                {
+                    console.log(prop);
+                }
+                
+            }*/
+            function hideColumns(object){
+                let viewNumber = object.getAttribute("data-dataColumn");
+                for(var prop in object)
+                {
+                    //console.log(prop);
+                }
+                alert(viewNumber);
+                let nodes = document.querySelectorAll('[data-dataColumn="' + viewNumber +'"]')
+                var number1 = nodes[0].getAttribute("data-columnNumber");
+                var number2 = nodes[1].getAttribute("data-columnNumber");
+                alert("number1 :" + number1)
+                alert("number2 :" + number2 )
+                if(number1 > number2){
+                    for(var i = (+number2) + 1; i <= number1; i++){
+                        var columns = document.querySelectorAll('[data-columnNumber="' + i +'"]')
+                        for(var y = 0; y < columns.length; y++){
+                            columns[y].style.visibility = "hidden";
+                        }
+                    }
+                }else{
+                    console.log("here");
+                    for(var i = (+number1) + 1; i <= number2; i++){
+                        console.log("here2");
+                        var columns = document.querySelectorAll('[data-columnNumber="' + i +'"]')
+                        for(var y = 0; y < columns.length; y++){
+                            console.log("here3");
+                            columns[y].style.display="none";
+                        }
+                    }
+                }
+                
+            }
+
+            function hideJSONInput(){
+                let jsonTextBox = document.getElementById("jSONContent");
+                jsonTextBox.hidden = true;
+                let tableContent = document.getElementById("tableContent");
+                tableContent.hidden = false;
+            }
+        </script>
+    </head>
+    <body class="small">
+        <div id="nav"><span>JSON Table Viewer</span></div>
+        <div id="intContent">
+            <input type="button" data-dataColumn="1" data-columnNumber = "1" id="what" value="hideColumn" onclick="hideColumns(this)"/>
+        </div>
+        <div id="content">
+            <table><thead><tr><th ><span style='background-color:red'>ROOT</span></th>
+                <th scope=col data-columnNumber ="1" style='color:purple'>[</th>
+                <th scope=col data-columnNumber ="2" style='color:Orange'>{</th>
+                <th scope=col data-columnNumber ="3" >(D:1)(P:1)name</th>
+                <th scope=col data-columnNumber ="4">(D:1)(P:2)obj2</th>
+                <th scope=col data-columnNumber ="5"style='color:Orange'>{</th>
+                <th scope=col data-columnNumber ="6">(D:2)(P:1)another</th>
+                <th scope=col data-columnNumber ="7">(D:2)(P:2)anotherx</th>
+                <th scope=col data-columnNumber ="8" style='color:Orange'>{</th>
+                <th scope=col  data-columnNumber ="9" >(D:3)(P:1)another</th>
+                <th scope=col  data-columnNumber ="10" style='color:Orange'>}</th>
+                <th scope=col data-columnNumber ="11" style='color:Orange'>}</th>
+                <th scope=col data-columnNumber ="12">(D:1)(P:3)obj3</th>
+                <th scope=col data-columnNumber ="13" style='color:purple'>[</th>
+                <th scope=col data-columnNumber ="14" style='color:purple'>'StringArray'</th>
+                <th scope=col data-columnNumber ="15" style='color:purple'>]</th>
+                <th scope=col data-columnNumber ="16">(D:1)(P:4)obj4</th>
+                <th scope=col data-columnNumber ="17" style='color:Orange'>{</th>
+                <th scope=col data-columnNumber ="18">(D:2)(P:1)another</th>
+                <th scope=col data-columnNumber ="19" style='color:Orange'>}</th>
+                <th scope=col data-columnNumber ="20" style='color:Orange'>}</th>
+                <th scope=col data-columnNumber ="21" data-dataColumn="1" style='color:purple'>]</th>
+                </tr></thead><tbody>
+                <tr><td scope=col style="grid-row:2;grid-column:1"><span style="background-color: greenyellow;">ObjectArray</span></td>
+                <td scope=col style="grid-row:2;grid-column:2"><span style="background-color: greenyellow;">0</span></td>
+                <td scope=col style="grid-row:2;grid-column:3"></td>
+                <td scope=col contenteditable style="grid-row:2;grid-column:4">Subash</td>
+                <td scope=col style="grid-row:2;grid-column:5"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:2;grid-column:6"></td>
+                <td scope=col contenteditable style="grid-row:2;grid-column:7">Subash2</td>
+                <td scope=col style="grid-row:2;grid-column:8"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:2;grid-column:9"></td>
+                <td scope=col contenteditable style="grid-row:2;grid-column:10">Subash3</td>
+                <td scope=col style="grid-row:2;grid-column:11"></td>
+                <td scope=col style="grid-row:2;grid-column:12"></td>
+                <td scope=col style="grid-row:2;grid-column:13"><span style="background-color:rgb(55, 169, 197);">StringArray</span></td>
+                <td scope=col style="grid-row:2;grid-column:14"><span style="background-color: greenyellow;">0</span></td>
+                <td scope=col contenteditable style="grid-row:2;grid-column:15">something</td>
+                <td scope=col style="grid-row:2;grid-column:16"></td>
+                <td scope=col style="grid-row:3;grid-column:14"><span style="background-color: greenyellow;">1</span></td>
+                <td scope=col contenteditable style="grid-row:3;grid-column:15">awesome</td>
+                <td scope=col style="grid-row:3;grid-column:16"></td>
+                <td scope=col style="grid-row:2;grid-column:17"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:2;grid-column:18"></td>
+                <td scope=col contenteditable style="grid-row:2;grid-column:19">Subash2</td>
+                <td scope=col style="grid-row:2;grid-column:20"></td>
+                <td scope=col style="grid-row:2;grid-column:21"></td>
+                <td scope=col style="grid-row:2;grid-column:22"></td>
+                </tr>
+                <tr><td scope=col style="grid-row:4;grid-column:1"></td>
+                <td scope=col style="grid-row:4;grid-column:2"><span style="background-color: greenyellow;">1</span></td>
+                <td scope=col style="grid-row:4;grid-column:3"></td>
+                <td scope=col contenteditable style="grid-row:4;grid-column:4">Subash</td>
+                <td scope=col style="grid-row:4;grid-column:5"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:4;grid-column:6"></td>
+                <td scope=col contenteditable style="grid-row:4;grid-column:7">Subash2</td>
+                <td scope=col style="grid-row:4;grid-column:8"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:4;grid-column:9"></td>
+                <td scope=col contenteditable style="grid-row:4;grid-column:10">Subash3</td>
+                <td scope=col style="grid-row:4;grid-column:11"></td>
+                <td scope=col style="grid-row:4;grid-column:12"></td>
+                <td scope=col style="grid-row:4;grid-column:13"><span style="background-color:rgb(55, 169, 197);">StringArray</span></td>
+                <td scope=col style="grid-row:4;grid-column:14"><span style="background-color: greenyellow;">0</span></td>
+                <td scope=col contenteditable style="grid-row:4;grid-column:15">something</td>
+                <td scope=col style="grid-row:4;grid-column:16"></td>
+                <td scope=col style="grid-row:5;grid-column:14"><span style="background-color: greenyellow;">1</span></td>
+                <td scope=col contenteditable style="grid-row:5;grid-column:15">awesome</td>
+                <td scope=col style="grid-row:5;grid-column:16"></td>
+                <td scope=col style="grid-row:4;grid-column:17"><span style="background-color:Orange;">Obj</span></td>
+                <td scope=col style="grid-row:4;grid-column:18"></td>
+                <td scope=col contenteditable style="grid-row:4;grid-column:19">Subash2</td>
+                <td scope=col style="grid-row:4;grid-column:20"></td>
+                <td scope=col style="grid-row:4;grid-column:21"></td>
+                <td scope=col style="grid-row:4;grid-column:22"></td>
+                </tr>
+                </tbody></table>
+        </div>
+        <div id="footer"></div>
+        
+        </body>
+</html>
