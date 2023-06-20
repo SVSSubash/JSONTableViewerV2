@@ -18,10 +18,18 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('json-table-viewer.ViewTableV2', () => {
 		// The code you place here will be executed every time your command is executed
+		let editor = vscode.window.activeTextEditor?.document.uri;
 		let content:any = vscode.window.activeTextEditor?.document.getText();
 		
 		let panel = vscode.window.createWebviewPanel('JSONTable', 'JSON -> HTML Table', vscode.ViewColumn.One, { enableScripts: true });
+
 		panel.webview.html = JSONManager.getHTML(content);
+		
+		vscode.workspace.onDidChangeTextDocument(ce => {
+			if(vscode.window.activeTextEditor?.document.uri == editor){
+			panel.webview.html = JSONManager.getHTML(ce.document.getText())
+			}
+		})
 	});
 
 	context.subscriptions.push(disposable);
