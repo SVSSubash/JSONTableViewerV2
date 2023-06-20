@@ -1,3 +1,5 @@
+import { ScriptSource } from "./htmlScript";
+
 export class HTMLRenderer
 {
     density:string = "";
@@ -13,13 +15,14 @@ export class HTMLRenderer
 
     public renderHTML():string
     {
+        let scriptSrc = new ScriptSource();
         let body:string = `<body class="${this.density}">
         <div id="nav"><span>JSON Table Viewer</span></div>
         <div id="intContent"></div>
         <div id="content">${this.table}</div>
         <div id="footer"></div>
         </body>`
-        let head:string = `<head><style>${this.style}</style></head>`
+        let head:string = `<head><style>${this.style}</style>${scriptSrc.getScriptTag()}</head>`
         return `<!DOCTYPE html><html> ${head} ${body} </html>`;
     }
 }
