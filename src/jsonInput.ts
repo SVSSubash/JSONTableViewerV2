@@ -130,7 +130,9 @@ export class JsonViewer{
 
     private createTableHeader():void
     {
-        this.globalStringHeader = "<thead><tr><th><span style='background-color:red'>ROOT</span></th>\n";
+        this.headerCount++;
+        this.globalStringHeader = "<thead><tr><th><span data-column-number='" + this.headerCount + "' style='background-color:red'>ROOT</span></th>\n";
+        this.headerCount++;
         this.tableHeader(this.mainPhoenixObject,0);
         this.globalStringHeader = this.globalStringHeader + "</tr></thead>"
     }
@@ -154,26 +156,26 @@ export class JsonViewer{
                 this.columnNumber++;
                 if(typePrinted == false)
                 {
-                    this.globalStringTableValue = this.globalStringTableValue + '<tr><td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + type + '</span></td>\n';
+                    this.globalStringTableValue = this.globalStringTableValue + '<tr><td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + type + '</span></td>\n';
                     typePrinted = true;
                 }
                 else
                 {
-                    this.globalStringTableValue = this.globalStringTableValue + '<tr><td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '</td>\n';
+                    this.globalStringTableValue = this.globalStringTableValue + '<tr><td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '</td>\n';
                 }
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
                 // @ts-ignore
                 this.getTableFromValuesWithPlacement(JSON.stringify(this.mainPhoenixObject[0]),JSON.stringify(sourceObj[i]));
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
                 this.globalStringTableValue = this.globalStringTableValue + "</tr>\n";
             }
         }
         else
         {
             this.columnNumber = 1;
-            this.globalStringTableValue = this.globalStringTableValue + '<tr><td style="grid-row:>'+ this.rowNumber + ':grid-column:' + this.columnNumber + '">'+'<span style="background-color: greenyellow;">' + type + '</span></td>\n';
+            this.globalStringTableValue = this.globalStringTableValue + '<tr><td data-column-number="' + this.columnNumber + '" style="grid-row:>'+ this.rowNumber + ':grid-column:' + this.columnNumber + '">'+'<span style="background-color: greenyellow;">' + type + '</span></td>\n';
             this.rowNumber = this.globalMaxRowNumber;
             this.getTableFromValuesWithPlacement(JSON.stringify(this.mainPhoenixObject),sourceJson);
             this.globalStringTableValue = this.globalStringTableValue + "</tr>\n";
@@ -364,12 +366,12 @@ export class JsonViewer{
                 }
 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">'+ '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">'+ '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
 
                 this.getTableFromValuesWithPlacement(JSON.stringify(rootTitleObject[0]),JSON.stringify(valueObj[i]));
                 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
                 
                 this.rowNumber++;
             }
@@ -390,13 +392,13 @@ export class JsonViewer{
             if(valueObj.length == 0)
             {
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;"></span></td>\n'; // [
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;"></span></td>\n'; // [
                 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n';
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n';
 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
             }
 
             for(var i = 0; i < valueObj.length; i++)
@@ -409,13 +411,13 @@ export class JsonViewer{
                 this.columnNumber = startColumnNumber;
 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color: greenyellow;">' + i + '</span></td>\n'; // [
             
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + valueObj[i] + '</td>\n';
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + valueObj[i] + '</td>\n';
 
                 this.columnNumber++;
-                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
+                this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
 
                 this.rowNumber++;
             }
@@ -430,7 +432,7 @@ export class JsonViewer{
         else if(rootTitleObjectType == "object")
         {
             this.columnNumber++;
-            this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // {
+            this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber +'" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // {
 
             for(var prop in rootTitleObject)
             {
@@ -455,18 +457,18 @@ export class JsonViewer{
                         bgColor = "Orange";
                     }
                     this.columnNumber++;
-                    this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color:' + bgColor +';">' +propType + '</span></td>\n'; // prop
+                    this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + '<span style="background-color:' + bgColor +';">' +propType + '</span></td>\n'; // prop
                     this.getTableFromValuesWithPlacement(JSON.stringify(rootTitleObject[prop]),JSON.stringify(valueObj[prop]));
                 }
                 else
                 {
                     this.columnNumber++;
-                    this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + valueObj[prop] + '</td>\n';
+                    this.globalStringTableValue = this.globalStringTableValue + '<td scope=col contenteditable data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '">' + valueObj[prop] + '</td>\n';
                 }
             }
 
             this.columnNumber++;
-            this.globalStringTableValue = this.globalStringTableValue + '<td scope=col style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // }
+            this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // }
         }
 
         if(this.columnNumber == this.globalColumnCount)
@@ -717,39 +719,49 @@ export class JsonViewer{
         //console.log(JSON.stringify(this.mainPhoenixObject));
     }
 
+    globalViewNumber:number = 1;
+
     // Generate the table header
     private tableHeader(jsonTitleObj:object, depth:number):void
     {
+        var viewNumber = this.globalViewNumber ;
+
         var type = this.getType(jsonTitleObj);
 
         if (type == "stringArray")
         {
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:purple'>[</th>\n";
+            this.globalViewNumber++;
+
+            this.globalStringHeader = this.globalStringHeader + '<th data-viewNumber="' + viewNumber + '" data-column-number="' + this.headerCount +'" scope=col style="color:purple">['+ viewNumber + '</th>\n';
             this.headerCount++;
 
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:purple'>'StringArray'</th>\n";
+            this.globalStringHeader = this.globalStringHeader + "<th data-column-number='" + this.headerCount +"' scope=col style='color:purple'>'StringArray'</th>\n";
             this.headerCount++;
 
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:purple'>]</th>\n";
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount +"'scope=col style='color:purple'>]" + viewNumber + "</th>\n";
             this.headerCount++;
         }
         if (type == "array")
         {
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:purple'>[</th>\n";
+            this.globalViewNumber++;
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount +"' scope=col style='color:purple'>[" + viewNumber + "</th>\n";
             this.headerCount++;
 
             // @ts-ignore
             this.tableHeader(jsonTitleObj[0],depth);
 
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:purple'>]</th>\n";
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:purple'>]" + viewNumber + "</th>\n";
             this.headerCount++;
         } 
         else if (type == "object")
         {
+            this.globalViewNumber++;
+
             depth++;
             var propCount = 0;
 
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:#ff0303'>{</th>\n";
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:#ff0303'>{" + viewNumber + "</th>\n";
             this.headerCount++;
 
             for (let x in jsonTitleObj) 
@@ -757,14 +769,14 @@ export class JsonViewer{
                 propCount++;
                 //str = "("+ "Depth" + ":" + depth + ")" + "(PropCount:" + propCount+ ")" +  x;
                 //let str = '<th scope=col>('+ "D" + ":" + depth + ")" + "(P:" + propCount+ ")" +  x + "</th>\n";
-                let str = '<th scope=col>' + x + '</th>\n';
+                let str = '<th scope=col data-column-number="' + this.headerCount + '">' + x + '</th>\n';
                 this.headerCount++;
                 this.globalStringHeader = this.globalStringHeader + str;
                 // @ts-ignore
                 this.tableHeader(jsonTitleObj[x],depth);
             }
 
-            this.globalStringHeader = this.globalStringHeader + "<th scope=col style='color:#ff0303'>}</th>\n";
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:#ff0303'>}" + viewNumber + "</th>\n";
             this.headerCount++;
         } 
         else if (type == "string")
@@ -775,12 +787,84 @@ export class JsonViewer{
         {
 
         }
+
         if(this.headerCount > this.globalColumnCount)
         {
             this.globalColumnCount = this.headerCount;
         }
     }
 
+    private tableHeaderBackup(jsonTitleObj:object, depth:number):void
+    {
+        var viewNumber = this.globalViewNumber ;
+
+        var type = this.getType(jsonTitleObj);
+
+        if (type == "stringArray")
+        {
+            this.globalViewNumber++;
+
+            this.globalStringHeader = this.globalStringHeader + '<th data-viewNumber="' + viewNumber + '" data-column-number="' + this.headerCount +'" scope=col style="color:purple">[' + viewNumber + '<input type="button" data-column-number="' + this.headerCount + '" value="+" onclick="hideColumns(this)" /></th>\n';
+            this.headerCount++;
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-column-number='" + this.headerCount +"' scope=col style='color:purple'>'StringArray'</th>\n";
+            this.headerCount++;
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount +"'scope=col style='color:purple'>]" + viewNumber + "</th>\n";
+            this.headerCount++;
+        }
+        if (type == "array")
+        {
+            this.globalViewNumber++;
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount +"' scope=col style='color:purple'>[" + viewNumber + "<input type='button' data-column-number='" + this.headerCount + "' value='+' onclick='hideColumns(this)' /></th>\n";
+            this.headerCount++;
+
+            // @ts-ignore
+            this.tableHeader(jsonTitleObj[0],depth);
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:purple'>]" + viewNumber + "</th>\n";
+            this.headerCount++;
+        } 
+        else if (type == "object")
+        {
+            this.globalViewNumber++;
+
+            depth++;
+            var propCount = 0;
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:#ff0303'>{" + viewNumber + "<input type='button' data-column-number='" + this.headerCount + "' value='+' onclick='hideColumns(this)' /></th>\n";
+            this.headerCount++;
+
+            for (let x in jsonTitleObj) 
+            {
+                propCount++;
+                //str = "("+ "Depth" + ":" + depth + ")" + "(PropCount:" + propCount+ ")" +  x;
+                //let str = '<th scope=col>('+ "D" + ":" + depth + ")" + "(P:" + propCount+ ")" +  x + "</th>\n";
+                let str = '<th scope=col data-column-number="' + this.headerCount + '">' + x + '</th>\n';
+                this.headerCount++;
+                this.globalStringHeader = this.globalStringHeader + str;
+                // @ts-ignore
+                this.tableHeader(jsonTitleObj[x],depth);
+            }
+
+            this.globalStringHeader = this.globalStringHeader + "<th data-viewNumber='" + viewNumber + "' data-column-number='" + this.headerCount + "' scope=col style='color:#ff0303'>}" + viewNumber + "</th>\n";
+            this.headerCount++;
+        } 
+        else if (type == "string")
+        {
+
+        } 
+        else 
+        {
+
+        }
+
+        if(this.headerCount > this.globalColumnCount)
+        {
+            this.globalColumnCount = this.headerCount;
+        }
+    }
     // Used to get the type of the object.
     private getType(val:any):string
     {
