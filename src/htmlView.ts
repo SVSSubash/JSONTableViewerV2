@@ -22,7 +22,7 @@ export class HTMLRenderer
         <div id="content">${this.table}</div>
         <div id="footer"></div>
         </body>`
-        let head:string = `<head><style>${this.style}</style>${scriptSrc.getScriptTag()}</head>`
-        return `<!DOCTYPE html><html> ${head} ${body} </html>`;
+        let head:string = `<head><style>${this.style}</style></head>`
+        return `<!DOCTYPE html><html> ${head} ${body} ${scriptSrc.getScriptTag()}</html>`;
     }
 }
