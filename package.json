@@ -2,7 +2,7 @@
   "name": "json-table-viewer2",
   "displayName": "JSON Table View",
   "description": "View JSON in tabular format.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "publisher": "Subash-ChakraView",
   "icon": "./images/VSCodeLotusMain.png",
   "engines": {
@@ -37,6 +37,11 @@
             "type": "string",
             "default": "italic",
             "description": "JSON table viewer font style."
+          },
+          "jsonTableViewer.jsonShowBraceNumbers": {
+            "type": "boolean",
+            "default": true,
+            "description": "JSON show brace numbers for each brace."
           }
         }
       }
