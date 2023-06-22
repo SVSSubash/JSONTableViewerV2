@@ -1,6 +1,6 @@
 # json-table-viewer README
 
-This command converts symmetric schema (all objects have same properties) json to html table. Note: 
+This command converts symmetric schema (all objects have same properties) json to html table. 
 
 ## Features
 
@@ -17,6 +17,7 @@ This extension contributes the following settings:
 * `jsonTableViewer.jsonTableViewerDensity`: Set the density of the JSON table Viewer. Values can be 'small | Medium | large'.
 * `jsonTableViewer.jsonTableViewerTheme`: Set the theme of the JSON table Viewer. Values can be 'Dark | Light | Pink | Blue'.
 * `jsonTableViewer.jsonTableViewerFontStyle`: Set the font style of the JSON table Viewer. Values can be 'italic | normal'.
+* `jsonTableViewer.jsonShowBraceNumbers`: Show the numbers for the start and end of each brace. 
 
 ## Release Notes
 
@@ -26,9 +27,12 @@ This extension contributes the following settings:
 
 ### 0.0.9
 
-1. Json table finds property values by property name.
-2. More accurate description of property value types.
-3. Fixed header columns.
-4. Support themes.
+1. More accurate description of property value types.
+2. Fixed header columns.
+3. Support themes.
+
+### 0.0.11
+
+1. Show brace numbers.
 
 **Enjoy!**
