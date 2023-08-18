@@ -1,5 +1,7 @@
 # json-table-viewer README
 
+https://github.com/SVSSubash/JSONTableViewerV2/blob/main/images/TableViewer.mp4
+
 This command converts symmetric schema (all objects have same properties) json to html table. 
 
 ## Features
