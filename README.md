@@ -2,6 +2,12 @@
 
 https://github.com/SVSSubash/JSONTableViewerV2/blob/main/images/TableViewer.mp4
 
+
+
+https://github.com/SVSSubash/JSONTableViewerV2/assets/44859012/ed6448a1-96a9-4e32-8550-fbde683dc590
+
+
+
 This command converts symmetric schema (all objects have same properties) json to html table. 
 
 ## Features
