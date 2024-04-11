@@ -170,6 +170,11 @@ export class JsonViewer{
                 this.columnNumber++;
                 this.globalStringTableValue = this.globalStringTableValue + '<td scope=col data-column-number="' + this.columnNumber + '" style="grid-row:' + this.rowNumber + ';grid-column:' + this.columnNumber + '"></td>\n'; // ]
                 this.globalStringTableValue = this.globalStringTableValue + "</tr>\n";
+                this.rowNumber++;
+                if(this.rowNumber > this.globalMaxRowNumber)
+                {
+                    this.globalMaxRowNumber = this.rowNumber;
+                }
             }
         }
         else
