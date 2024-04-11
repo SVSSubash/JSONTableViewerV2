@@ -2,9 +2,8 @@
   "name": "json-table-viewer2",
   "displayName": "JSON Table View",
   "description": "View JSON in tabular format.",
-  "version": "0.0.10",
+  "version": "0.0.15",
   "publisher": "Subash-ChakraView",
-  "icon": "./images/VSCodeLotusMain.png",
   "engines": {
     "vscode": "^1.75.0"
   },
